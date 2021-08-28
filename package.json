@@ -5,7 +5,16 @@
   "files": [
     "dist"
   ],
-  "main": "index.js",
+  "main": "dist/ruim.umd.js",
+  "unpkg": "dist/ruim.iife.js",
+  "jsdelivr": "dist/ruim.iife.js",
+  "module": "./dist/ruim.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/ruim.esm.js",
+      "require": "./dist/ruim.umd.js"
+    }
+  },
   "scripts": {
     "build": "vue-tsc --noEmit && vite build",
     "test": "echo \"Error: no test specified\" && exit 1"
