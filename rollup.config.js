@@ -12,22 +12,25 @@ let globalDependencies = {
     'vue': 'Vue',
 }
 
+let externalDependencies = [
+    'vue'
+]
+
 function addEntry(folder, inFile, outFile) {
     entries.push({
         input: 'src/components/' + folder + '/' + inFile,
         output: [
             {
-                format: 'cjs',
-                file: 'dist/' + folder + '/' + outFile + '.cjs.js',
+                format: 'umd',
+                file: 'dist/' + folder + '/' + outFile + '.umd.js',
             },
             {
                 format: 'esm',
-                file: 'dist/' + folder + '/' + outFile + '.esm.js'
+                file: 'dist/' + folder + '/' + outFile + '.esm.js',
             },
             {
                 format: 'iife',
-                name: 'primevue.' + folder,
-                file: 'dist/' + folder + '/' + outFile + '.js',
+                file: 'dist/' + folder + '/' + outFile + '.iife.js',
                 globals: globalDependencies
             }
         ],
@@ -38,24 +41,24 @@ function addEntry(folder, inFile, outFile) {
                 tsconfig: path.resolve(__dirname, 'tsconfig.json'),
             }),
             postcss()
-        ]
+        ],
+        external: externalDependencies
     });
 
     entries.push({
         input: 'src/components/' + folder + '/' + inFile,
         output: [
             {
-                format: 'cjs',
-                file: 'dist/' + folder + '/' + outFile + '.cjs.min.js'
+                format: 'umd',
+                file: 'dist/' + folder + '/' + outFile + '.umd.min.js',
             },
             {
                 format: 'esm',
-                file: 'dist/' + folder + '/' + outFile + '.esm.min.js'
+                file: 'dist/' + folder + '/' + outFile + '.esm.min.js',
             },
             {
                 format: 'iife',
-                name: 'primevue.' + folder,
-                file: 'dist/' + folder + '/' + outFile + '.min.js',
+                file: 'dist/' + folder + '/' + outFile + '.iife.min.js',
                 globals: globalDependencies
             }
         ],
@@ -66,7 +69,8 @@ function addEntry(folder, inFile, outFile) {
               }),
             postcss(),
             terser()
-        ]
+        ],
+        external: externalDependencies
     });
 }
 
