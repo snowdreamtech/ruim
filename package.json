@@ -1,0 +1,39 @@
+{
+  "name": "ruim",
+  "version": "0.0.1",
+  "description": "Mobile UI Components built on Vue 3",
+  "files": [
+    "dist"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "build": "vue-tsc --noEmit && vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snowdreamtech/ruim.git"
+  },
+  "keywords": [
+    "vue"
+  ],
+  "author": "SnowdreamTech",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/snowdreamtech/ruim/discussions"
+  },
+  "homepage": "https://github.com/snowdreamtech/ruim#readme",
+  "dependencies": {
+    "vue": "^3.2.6"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.2.6",
+    "fs-extra": "^10.0.0",
+    "rollup-plugin-postcss": "^4.0.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "rollup-plugin-vue": "^6.0.0",
+    "sass": "^1.38.2",
+    "typescript": "^4.4.2"
+  }
+}
