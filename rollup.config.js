@@ -2,6 +2,7 @@ import vue from 'rollup-plugin-vue';
 import postcss from 'rollup-plugin-postcss';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2'
+import jsx from "acorn-jsx";
 
 const fs = require('fs-extra');
 const path = require('path');
@@ -22,14 +23,19 @@ function addEntry(folder, inFile, outFile) {
         output: [
             {
                 format: 'umd',
+                name: outFile,
                 file: 'dist/' + folder + '/' + outFile + '.umd.js',
+                globals: globalDependencies
             },
             {
                 format: 'esm',
+                name: outFile,
                 file: 'dist/' + folder + '/' + outFile + '.esm.js',
+                globals: globalDependencies
             },
             {
                 format: 'iife',
+                name: outFile,
                 file: 'dist/' + folder + '/' + outFile + '.iife.js',
                 globals: globalDependencies
             }
@@ -42,6 +48,7 @@ function addEntry(folder, inFile, outFile) {
             }),
             postcss()
         ],
+        acornInjectPlugins: [jsx()],
         external: externalDependencies
     });
 
@@ -50,14 +57,19 @@ function addEntry(folder, inFile, outFile) {
         output: [
             {
                 format: 'umd',
+                name: outFile,
                 file: 'dist/' + folder + '/' + outFile + '.umd.min.js',
+                globals: globalDependencies
             },
             {
                 format: 'esm',
+                name: outFile,
                 file: 'dist/' + folder + '/' + outFile + '.esm.min.js',
+                globals: globalDependencies
             },
             {
                 format: 'iife',
+                name: outFile,
                 file: 'dist/' + folder + '/' + outFile + '.iife.min.js',
                 globals: globalDependencies
             }
@@ -68,8 +80,9 @@ function addEntry(folder, inFile, outFile) {
                 tsconfig: path.resolve(__dirname, 'tsconfig.json'),
               }),
             postcss(),
-            terser()
+            // terser()
         ],
+        acornInjectPlugins: [jsx()],
         external: externalDependencies
     });
 }
