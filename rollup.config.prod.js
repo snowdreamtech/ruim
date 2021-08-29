@@ -2,6 +2,7 @@ import vue from 'rollup-plugin-vue';
 import postcss from 'rollup-plugin-postcss';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2'
+
 import jsx from "acorn-jsx";
 
 const fs = require('fs-extra');
@@ -46,7 +47,7 @@ function addEntry(folder, inFile, outFile) {
                 // Absolute path to import correct config in e2e tests
                 tsconfig: path.resolve(__dirname, 'tsconfig.json'),
             }),
-            postcss()
+            postcss(),
         ],
         acornInjectPlugins: [jsx()],
         external: externalDependencies
@@ -80,7 +81,7 @@ function addEntry(folder, inFile, outFile) {
                 tsconfig: path.resolve(__dirname, 'tsconfig.json'),
               }),
             postcss(),
-            // terser()
+            terser()
         ],
         acornInjectPlugins: [jsx()],
         external: externalDependencies
